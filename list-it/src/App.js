@@ -7,26 +7,24 @@ import {
   VStack,
   Code,
   Grid,
-  theme,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Logo } from './Logo';
-import { ShareButton } from './ShareButton';
+import NavBar from './Components/NavBar';
+import theme from './theme';
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <ShareButton></ShareButton>
+        <Grid minH="100vh" p={3} >
+          <NavBar/>
           <VStack spacing={8}>
             <Logo h="40vmin" pointerEvents="none" />
             <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
+              Edit <Code fontSize="xl" color="blue">src/App.js</Code> and save to reload.
             </Text>
             <Link
-              color="teal.500"
+              color="#AFECE7"
               href="https://chakra-ui.com"
               fontSize="2xl"
               target="_blank"
