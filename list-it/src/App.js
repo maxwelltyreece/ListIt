@@ -1,4 +1,4 @@
-import React from 'react';
+import {React,useState} from 'react';
 import {
   ChakraProvider,
   Box,
@@ -8,30 +8,23 @@ import {
   Code,
   Grid,
 } from '@chakra-ui/react';
-import { Logo } from './Logo';
 import NavBar from './Components/NavBar';
 import theme from './theme';
 
-function App() {
+
+function App() {  
+  const colorThemes = [grape, watermelon];
+  const [activeColorTheme, activateColorTheme] = useState(grape);
+  const mergedTheme = extendTheme(theme, { colors: activeColorTheme.colors });
+
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider theme={mergedTheme}>
       <Box textAlign="center" fontSize="xl">
         <Grid minH="100vh" p={3} >
-          <NavBar/>
+          <NavBar theme = {theme}/>
           <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl" color="blue">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="#AFECE7"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
+            
+            
           </VStack>
         </Grid>
       </Box>

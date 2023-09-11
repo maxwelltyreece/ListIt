@@ -1,20 +1,29 @@
-import React from 'react';
-import {IconButton, Modal, ModalHeader,ModalBody,ModalOverlay,ModalCloseButton,Text, useDisclosure, ModalContent, Wrap  } from '@chakra-ui/react';
+import {React,useState} from 'react';
+import {IconButton, Modal, ModalHeader,ModalBody,ModalOverlay,ModalCloseButton,Text, useDisclosure, ModalContent, Wrap, extendTheme, Button,  } from '@chakra-ui/react';
 import {FaCog } from 'react-icons/fa';
+import red from "../Themes/red.ts";
+import green from '../Themes/green.ts';
+import blue from '../Themes/blue.ts';
 
-export const SettingsButton = props => {
-    const SettingsOverlay = () => (
-        <ModalOverlay bg='blackAlpha.300' backdropFilter='blur(10px) hue-rotate(90deg)'/>
-      )
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const modalColours = ["yellow","orange","red","pink","purple","blue","teal","green",]
 
-    const colourButtons = []
+function SettingsButton ({theme}) {
+  //modal operation
+  const SettingsOverlay = () => (<ModalOverlay bg='blackAlpha.300' backdropFilter='blur(10px) hue-rotate(90deg)'/>)
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
-    modalColours.forEach((data) => {colourButtons.push(<IconButton 
-      colorScheme={data} 
-      isRound={true} 
-      size={"xs"}/>)})
+
+  //theme management
+  var colourlist = []
+  colorThemes.forEach((colorTheme ,id) => {
+    colourlist.push(
+      <IconButton
+        bg={colorTheme.colors.primary[200]}
+        isRound={true}
+        size={'xs'}
+        onClick={() => activateColorTheme(colorTheme)}
+        
+    
+    />)})
 
   return (
     <>
@@ -34,22 +43,21 @@ export const SettingsButton = props => {
         <Modal isCentered isOpen={isOpen} onClose={onClose}>
             <SettingsOverlay/>
             <ModalContent>
-                <ModalHeader>
-                  <Wrap spacing={6}>
-                  {colourButtons} 
-                  </Wrap>
-                    
-
-                </ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
-                              
-                  <Text>Custom backdrop filters!</Text>
-                </ModalBody>
+              <ModalHeader>
+                <Wrap spacing={6} >
+                  {colourlist}
+                                  
+                </Wrap>
+              </ModalHeader>
+              <ModalCloseButton />
             </ModalContent>
         </Modal>
     </>
   );
 };
+
+export default SettingsButton;
+
+
 
 

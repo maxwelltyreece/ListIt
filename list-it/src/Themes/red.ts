@@ -8,7 +8,7 @@ interface AppTheme {
   };
 }
 
-const theme: AppTheme = {
+const red: AppTheme = {
   id: "red",
   name: "Red",
   colors: {
@@ -27,4 +27,4 @@ const theme: AppTheme = {
     }
 };
 
-export default theme;
+export default red;
